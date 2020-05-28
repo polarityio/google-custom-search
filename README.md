@@ -28,6 +28,8 @@ https://cse.google.com/cse/create/new
 
 Once the search engine has been generated, you can edit it to copy the Search engine ID which you will need for the integration settings.  Add additional sites that you would like to search on the edit page as well.
 
+For a more detailed video tutorial, [Look Here](https://www.youtube.com/watch?v=vP_inGfKG5E).
+
 Additional installation instructions for integrations are provided on the [PolarityIO GitHub Page](https://polarityio.github.io/).
 
 ## Polarity

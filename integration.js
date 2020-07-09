@@ -58,7 +58,7 @@ function doLookup(entities, options, cb) {
         key: options.apiKey,
         cx: options.cx,
         num: options.maxResults,
-        q: entity.value
+        q: `"${entity.value}"`
       },
       json: true
     };

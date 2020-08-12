@@ -24,11 +24,15 @@ module.exports = {
    */
   description:
     "Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.",
-  entityTypes: ['*'],
+  entityTypes: ['IPv4', 'IPv6', 'hash', 'domain', 'email', 'url', 'IPv4CIDR'],
   customTypes:[
     {
       key: 'search',
       regex: /[\s\S].*/
+    },
+    {
+      key: 'cve',
+      regex: /CVE-(1999|2\d{3})-(0\d{2}[1-9]|[1-9]\d{3,})/
     }
   ],
   /**

@@ -1,7 +1,11 @@
 {{#if details.items}}
-    <h1 class="p-title">
-        {{fa-icon "eye" fixedWidth=true}}  Search result Details
-    </h1>
+    <div>
+      <span class="p-value">
+        <a href="https://cse.google.com/cse?q=%22{{block.entity.value}}%22&cx={{block.userOptions.cx}}">
+          Pivot to Google {{fa-icon "external-link-square" class="external-link-icon"}}
+        </a>
+      </span>
+    </div>
     {{#each details.items as |result index|}}
       {{#if (gt index 0)}}
         <hr>

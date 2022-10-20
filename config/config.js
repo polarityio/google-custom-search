@@ -23,16 +23,12 @@ module.exports = {
    * @optional
    */
   description:
-    "Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.",
-  entityTypes: ['IPv4', 'IPv6', 'hash', 'domain', 'email', 'url', 'IPv4CIDR'],
-  customTypes:[
+    'Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.',
+  entityTypes: ['IPv4', 'IPv6', 'hash', 'domain', 'email', 'url', 'IPv4CIDR', 'cve'],
+  customTypes: [
     {
       key: 'search',
-      regex: /[\s\S].*/
-    },
-    {
-      key: 'cve',
-      regex: /CVE-(1999|2\d{3})-(0\d{2}[1-9]|[1-9]\d{3,})/
+      regex: /[\s\S].{1,512}/
     }
   ],
   /**
@@ -50,14 +46,6 @@ module.exports = {
     },
     template: {
       file: './templates/block.hbs'
-    }
-  },
-  summary: {
-    component: {
-      file: './components/summary.js'
-    },
-    template: {
-      file: './templates/summary.hbs'
     }
   },
   request: {
@@ -97,8 +85,8 @@ module.exports = {
       description: 'Valid Google CSE API Key',
       default: '',
       type: 'password',
-      userCanEdit: true,
-      adminOnly: false
+      userCanEdit: false,
+      adminOnly: true
     },
     {
       key: 'cx',
@@ -106,8 +94,8 @@ module.exports = {
       description: 'Google Custom Search Engine ID',
       default: '',
       type: 'text',
-      userCanEdit: true,
-      adminOnly: false
+      userCanEdit: false,
+      adminOnly: true
     },
     {
       key: 'maxResults',

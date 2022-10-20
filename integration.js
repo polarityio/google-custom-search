@@ -47,13 +47,12 @@ function doLookup(entities, options, cb) {
   let lookupResults = [];
   let tasks = [];
 
-  Logger.debug(entities);
-  entities.forEach((entity) => {
-    const url = `https://www.googleapis.com/`;
+  Logger.trace({ entities }, 'doLookup Entities');
 
-    let requestOptions = {
+  entities.forEach((entity) => {
+    const requestOptions = {
       method: 'GET',
-      uri: `${url}customsearch/v1/`,
+      uri: `https://www.googleapis.com/customsearch/v1/`,
       qs: {
         key: options.apiKey,
         cx: options.cx,
@@ -65,8 +64,8 @@ function doLookup(entities, options, cb) {
 
     Logger.trace({ requestOptions }, 'Request Options');
 
-    tasks.push(function(done) {
-      requestWithDefaults(requestOptions, function(error, res, body) {
+    tasks.push(function (done) {
+      requestWithDefaults(requestOptions, function (error, res, body) {
         Logger.trace({ body, status: res.statusCode });
         let processedResult = handleRestError(error, entity, res, body);
 
@@ -97,7 +96,7 @@ function doLookup(entities, options, cb) {
         lookupResults.push({
           entity: result.entity,
           data: {
-            summary: [],
+            summary: [`Total Results: ${result.body.searchInformation.totalResults}`],
             details: result.body
           }
         });

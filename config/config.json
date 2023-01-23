@@ -1,0 +1,63 @@
+{
+  "name": "Google Custom Search Engine (CSE)",
+  "acronym": "GOOG",
+  "description": "Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.",
+  "entityTypes": ["IPv4", "IPv6", "hash", "domain", "email", "url", "IPv4CIDR", "cve"],
+  "customTypes": [
+    {
+      "key": "search",
+      "regex": "[\\s\\S].{1,512}"
+    }
+  ],
+  "defaultColor": "light-gray",
+  "styles": ["./styles/style.less"],
+  "block": {
+    "component": {
+      "file": "./components/block.js"
+    },
+    "template": {
+      "file": "./templates/block.hbs"
+    }
+  },
+  "request": {
+    "cert": "",
+    "key": "",
+    "passphrase": "",
+    "ca": "",
+    "proxy": "",
+    "rejectUnauthorized": true
+  },
+  "logging": {
+    "level": "info"
+  },
+  "onDemandOnly": true,
+  "options": [
+    {
+      "key": "apiKey",
+      "name": "API Key",
+      "description": "Valid Google CSE API Key",
+      "default": "",
+      "type": "password",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "cx",
+      "name": "Custom Search Engine ID",
+      "description": "Google Custom Search Engine ID",
+      "default": "",
+      "type": "text",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "maxResults",
+      "name": "Maximum Number of Results to Return",
+      "description": "Maximum number of search results to return",
+      "default": 5,
+      "type": "number",
+      "userCanEdit": false,
+      "adminOnly": true
+    }
+  ]
+}

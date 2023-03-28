@@ -1,4 +1,5 @@
 {
+  "polarityIntegrationUuid": "dc705290-cce1-11ed-aeee-075d3490155d",
   "name": "Google Custom Search Engine (CSE)",
   "acronym": "GOOG",
   "description": "Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.",

@@ -28,7 +28,7 @@ module.exports = {
   customTypes: [
     {
       key: 'search',
-      regex: /^[\s\S]{2,2048}$/
+      regex: /\S[\s\S]{2,512}\S/
     }
   ],
   defaultColor: 'light-gray',

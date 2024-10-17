@@ -3,7 +3,7 @@
   "name": "Google Custom Search Engine (CSE)",
   "acronym": "GOOG",
   "description": "Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.",
-  "entityTypes": ["IPv4", "IPv6", "hash", "domain", "email", "url", "IPv4CIDR", "cve"],
+  "entityTypes": ["IPv4", "IPv6", "MD5", "SHA1", "SHA256", "domain", "email", "url", "IPv4CIDR", "cve"],
   "customTypes": [
     {
       "key": "search",
@@ -19,13 +19,6 @@
     "template": {
       "file": "./templates/block.hbs"
     }
-  },
-  "request": {
-    "cert": "",
-    "key": "",
-    "passphrase": "",
-    "ca": "",
-    "proxy": ""
   },
   "logging": {
     "level": "info"

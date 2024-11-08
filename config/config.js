@@ -24,7 +24,7 @@ module.exports = {
    */
   description:
     'Google Search Custom Search (CSE) allows the Polarity user to retrieve and display search results from Google Custom Search programmatically.',
-  entityTypes: ['IPv4', 'IPv6', 'hash', 'domain', 'email', 'url', 'IPv4CIDR', 'cve'],
+  entityTypes: ['IPv4', 'IPv6', 'MD5', 'SHA1', 'SHA256', 'domain', 'email', 'url', 'IPv4CIDR', 'cve'],
   customTypes: [
     {
       key: 'search',
@@ -64,7 +64,7 @@ module.exports = {
     ca: '',
     // An HTTP proxy to be used. Supports proxy Auth with Basic Auth, identical to support for
     // the url parameter (by embedding the auth info in the uri)
-    proxy: ""
+    proxy: ''
   },
   logging: {
     level: 'info' //trace, debug, info, warn, error, fatal

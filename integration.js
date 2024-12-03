@@ -115,15 +115,7 @@ function handleRestError(error, entity, res, body) {
     return {
       error,
       body,
-      detail: 'HTTP Request Error'
-    };
-  }
-
-  if (res.statusCode !== 200) {
-    return {
-      error: 'Did not receive HTTP 200 Status Code',
-      statusCode: res ? res.statusCode : 'Unknown',
-      detail: 'An unexpected error occurred'
+      detail: 'Network Error Encountered'
     };
   }
 
@@ -133,19 +125,73 @@ function handleRestError(error, entity, res, body) {
       entity: entity,
       body: body
     };
+  } else if (res.statusCode === 400 || res.statusCode === 404) {
+    result = {
+      error: 'Did not receive HTTP 200 Status Code',
+      statusCode: res ? res.statusCode : 'Unknown',
+      detail:
+        body.error && body.error.message
+          ? `${body.error.message} -- Ensure you have provided a valid Google Search Engine ID`
+          : `An unexpected HTTP Status Code of ${res.statusCode} was received`,
+      body
+    };
   } else {
     result = {
-      body,
-      errorNumber: body.errorNo,
-      error: body.errorMsg,
-      detail: body.errorMsg
+      error: 'Did not receive HTTP 200 Status Code',
+      statusCode: res ? res.statusCode : 'Unknown',
+      detail:
+        body.error && body.error.message
+          ? body.error.message
+          : `An unexpected HTTP Status Code of ${res.statusCode} was received`,
+      body
     };
   }
 
   return result;
 }
 
+function validateStringOption(errors, options, optionName, errMessage) {
+  if (
+    typeof options[optionName].value !== 'string' ||
+    (typeof options[optionName].value === 'string' && options[optionName].value.length === 0)
+  ) {
+    errors.push({
+      key: optionName,
+      message: errMessage
+    });
+  }
+
+  return errors;
+}
+
+function validateNumericOption(errors, options, optionName, errMessage) {
+  if (typeof options[optionName].value === 'undefined' || +options[optionName].value <= 0) {
+    errors.push({
+      key: optionName,
+      message: errMessage
+    });
+  }
+
+  return errors;
+}
+
+function validateOptions(options, callback) {
+  let errors = [];
+
+  errors = validateStringOption(errors, options, 'apiKey', 'You must provide a valid API Key.');
+  errors = validateStringOption(errors, options, 'cx', 'You must provide a Custom Search Engine ID.');
+  errors = validateNumericOption(
+    errors,
+    options,
+    'maxResults',
+    'You must provide a Maximum Number of Results to return greater than 0'
+  );
+
+  callback(null, errors);
+}
+
 module.exports = {
-  doLookup: doLookup,
-  startup: startup
+  doLookup,
+  startup,
+  validateOptions
 };
